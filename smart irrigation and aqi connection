@@ -1,0 +1,65 @@
+Understood 👍
+Here is **ONLY THE WIRING** — no code, no explanation.
+
+---
+
+## 🔌 POWER
+
+* **Arduino 5V → Breadboard + rail**
+* **Arduino GND → Breadboard – rail**
+
+---
+
+## 🌫️ MQ-2 GAS SENSOR
+
+* **VCC → + rail (5V)**
+* **GND → – rail (GND)**
+* **AO → Arduino A0**
+* **DO → Not connected**
+
+---
+
+## 🌫️ GAS INDICATOR LEDs
+
+### 🟢 Green LED (SAFE air)
+
+* **Arduino D8 → 220Ω resistor → LED long leg**
+* **LED short leg → GND rail**
+
+### 🔴 Red LED (BAD air)
+
+* **Arduino D9 → 220Ω resistor → LED long leg**
+* **LED short leg → GND rail**
+
+---
+
+## ⏱️ TIMER LEDs
+
+### 🔴 Red Timer LED (8 sec)
+
+* **Arduino D6 → 220Ω resistor → LED long leg**
+* **LED short leg → GND rail**
+
+### 🟢 Green Timer LED (rest time)
+
+* **Arduino D7 → 220Ω resistor → LED long leg**
+* **LED short leg → GND rail**
+
+---
+
+## 📌 SUMMARY TABLE
+
+| Component       | Arduino Pin |
+| --------------- | ----------- |
+| MQ-2 AO         | A0          |
+| Gas Green LED   | D8          |
+| Gas Red LED     | D9          |
+| Timer Red LED   | D6          |
+| Timer Green LED | D7          |
+| Power           | 5V          |
+| Ground          | GND         |
+
+---
+
+That’s it ✅
+If you want a **single-line diagram or breadboard layout**, tell me.

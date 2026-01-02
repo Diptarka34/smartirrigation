@@ -1,0 +1,57 @@
+// ================= PINS =================
+#define MQ2 A0
+
+#define GAS_GREEN 8
+#define GAS_RED   9
+
+#define TIMER_RED   6
+#define TIMER_GREEN 7
+
+// ============== SETTINGS ==============
+int threshold = 500;          // Adjust using Serial Monitor
+
+unsigned long redTime = 8000; // 8 seconds
+unsigned long greenTime = 5000; // Green timer ON time
+
+unsigned long previousMillis = 0;
+bool timerRedState = true;
+
+void setup() {
+  pinMode(GAS_GREEN, OUTPUT);
+  pinMode(GAS_RED, OUTPUT);
+
+  pinMode(TIMER_RED, OUTPUT);
+  pinMode(TIMER_GREEN, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // ========== GAS SYSTEM ==========
+  int gasValue = analogRead(MQ2);
+  Serial.println(gasValue);
+
+  if (gasValue < threshold) {
+    digitalWrite(GAS_GREEN, HIGH);
+    digitalWrite(GAS_RED, LOW);
+  } else {
+    digitalWrite(GAS_GREEN, LOW);
+    digitalWrite(GAS_RED, HIGH);
+  }
+
+  // ========== TIMER SYSTEM ==========
+  unsigned long currentMillis = millis();
+
+  if (timerRedState && currentMillis - previousMillis >= redTime) {
+    previousMillis = currentMillis;
+    timerRedState = false;
+  }
+
+  if (!timerRedState && currentMillis - previousMillis >= greenTime) {
+    previousMillis = currentMillis;
+    timerRedState = true;
+  }
+
+  digitalWrite(TIMER_RED, timerRedState);
+  digitalWrite(TIMER_GREEN, !timerRedState);
+}
